@@ -1,1 +1,17 @@
+name: A Basic Workflow
 
+on: 
+  workflow_dispatch:
+
+jobs:
+  mainjob:
+    name: 'Print the default github vars'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: print-values-of-env-vars
+      run: |
+        echo "JOJO RABBIT" >> "$MY_NAME"
+        echo "HELLO GUYS"
+        echo "$GITHUB_ACTION"
+        echo "$MY_NAME"
