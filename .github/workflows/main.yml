@@ -1,18 +1,20 @@
 name: A Basic Workflow
-
-on: 
+on:
   push:
   workflow_dispatch:
-
 jobs:
   mainjob:
     name: 'Print the default github vars'
     runs-on: ubuntu-latest
-
     steps:
     - name: print-values-of-env-vars
       run: |
-        echo "JOJO RABBIT" >> "$MY_NAME"
+        # FIX: Write to GITHUB_ENV to set a variable dynamically
+        echo "MY_NAME=JOJO RABBIT" >> $GITHUB_ENV
+        
+    - name: use-the-variable
+      run: |
         echo "HELLO GUYS"
         echo "$GITHUB_ACTION"
+        # Now this will print "JOJO RABBIT"
         echo "$MY_NAME"
